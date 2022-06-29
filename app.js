@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-const margin = { top: 10, right: 30, bottom: 30, left: 40 },
+const margin = { top: 20, right: 30, bottom: 30, left: 40 },
   width = 460 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
@@ -34,8 +34,8 @@ d3.csv("./data.csv").then(function (data) {
   // Prepare a color palette
   const color = d3
     .scaleLinear()
-    .domain([0, 1]) // Points per square pixel.
-    .range(["white", "#3e7dbd"]);
+    .domain([0, 0.001]) // Points per square pixel.
+    .range(["#fff", "#6A6A9C"]);
 
   // compute the density data
   const densityData = d3
