@@ -48,6 +48,15 @@ createGraph(
   "./data/attractive_place_to_work_data.csv"
 );
 
+const svg_m = d3
+  .select("#onboard_new")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(svg_m, "Onboarding new staff", "./data/onborad_new_data.csv");
+
 function createGraph(svgName, title, dataFilePath) {
   svgName
     .append("text")
