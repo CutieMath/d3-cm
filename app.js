@@ -67,7 +67,7 @@ const svg_n = d3
 createGraph(svg_n, "Transparency", "./data/transparency_data.csv");
 
 const svg_o = d3
-  .select("#productivity")
+  .select("#remote_work_efficiency")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -75,8 +75,8 @@ const svg_o = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 createGraph(
   svg_o,
-  "Productivity level",
-  "./data/level_of_productivity_data.csv"
+  "Remote Work Efficiency",
+  "./data/remote_work_efficiency_data.csv"
 );
 
 function createGraph(svgName, title, dataFilePath) {
