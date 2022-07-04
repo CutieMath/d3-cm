@@ -271,7 +271,68 @@ const svg_v = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 createGraph(svg_v, "Reduce bias", "./data/22_reduce_bias_data.csv");
 
-// ============
+const svg_w = d3
+  .select("#unack_probs")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_w,
+  "Freely discuss unacknowledged problems",
+  "./data/23_unack_probs_data.csv"
+);
+
+const svg_x = d3
+  .select("#staff_regulation")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_x,
+  "Manage the change of employment law and staff regulation",
+  "./data/24_staff_regulation_data.csv"
+);
+
+const svg_y = d3
+  .select("#cultural_competency")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_y,
+  "Cultural competency level",
+  "./data/25_cultural_competency_data.csv"
+);
+
+const svg_z = d3
+  .select("#fast_decision")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(svg_z, "Make fast decisions", "./data/26_fast_decision_data.csv");
+
+const svg_aa = d3
+  .select("#barriers_to_obj")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_aa,
+  "Identify barriers to your stated objectives",
+  "./data/27_barriers_to_obj_data.csv"
+);
+
+// ==========
 // Create graph function
 // ======================
 function createGraph(svgName, title, dataFilePath) {
