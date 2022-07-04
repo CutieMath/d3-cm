@@ -79,6 +79,19 @@ createGraph(
   "./data/remote_work_efficiency_data.csv"
 );
 
+const svg_p = d3
+  .select("#psychological_safety")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_p,
+  "Psychological Safety",
+  "./data/psychological_safety_data.csv"
+);
+
 const svg_q = d3
   .select("#high_quality_candidates")
   .append("svg")
