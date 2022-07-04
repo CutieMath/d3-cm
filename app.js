@@ -66,6 +66,32 @@ createGraph(
   "./data/5_roll_out_program_data.csv"
 );
 
+const svg_f = d3
+  .select("#tactical")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_f,
+  "Solve cultural problems with tactical fixes",
+  "./data/5_roll_out_program_data.csv"
+);
+
+const svg_g = d3
+  .select("#engagement")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_g,
+  "Engagement in the workplace",
+  "./data/7_engagement_data.csv"
+);
+
 const svg_i = d3
   .select("#leadership")
   .append("svg")
@@ -185,6 +211,9 @@ createGraph(
   "./data/identify_conflict_act_data.csv"
 );
 
+// ============
+// Create graph function
+// ======================
 function createGraph(svgName, title, dataFilePath) {
   svgName
     .append("text")
@@ -262,169 +291,3 @@ function createGraph(svgName, title, dataFilePath) {
       });
   });
 }
-
-// Tactical
-const svg_f = d3
-  .select("#tactical")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", `translate(${margin.left},${margin.top})`);
-
-svg_f
-  .append("text")
-  .attr("x", width / 2)
-  .attr("y", 2 - margin.top / 2)
-  .attr("text-anchor", "middle")
-  .style("font-size", "16px")
-  .style("text-decoration", "underline")
-  .text("Tactical");
-
-// read data
-d3.csv("./data/tactical_fix_data.csv").then(function (data) {
-  // Add X axis
-  const x = d3
-    .scaleLinear()
-    .domain([0, 10])
-    .range([margin.left, width - margin.right]);
-  svg_f
-    .append("g")
-    .attr("transform", `translate(0, ${height})`)
-    .call(d3.axisBottom(x));
-  svg_f
-    .append("text")
-    .attr("class", "x label")
-    .attr("text-anchor", "end")
-    .attr("x", width)
-    .attr("y", height - 6)
-    .text("Importance");
-
-  // Add Y axis
-  const y = d3
-    .scaleLinear()
-    .domain([0, 10])
-    .range([height - margin.bottom, margin.top]);
-  svg_f.append("g").call(d3.axisLeft(y));
-  svg_f
-    .append("text")
-    .attr("class", "y label")
-    .attr("text-anchor", "end")
-    .attr("y", 6)
-    .attr("dy", ".75em")
-    .attr("transform", "rotate(-90)")
-    .text("Satisfaction");
-
-  // Prepare a color palette
-  const color = d3
-    .scaleLinear()
-    .domain([0, 0.001]) // Points per square pixel.
-    .range(["white", brandColorB]);
-
-  // compute the density data
-  const densityData = d3
-    .contourDensity()
-    .x(function (d) {
-      return x(d.x);
-    })
-    .y(function (d) {
-      return y(d.y);
-    })
-    .size([width, height])
-    .bandwidth(20)(data);
-
-  // show the shape
-  svg_f
-    .insert("g", "g")
-    .selectAll("path")
-    .data(densityData)
-    .enter()
-    .append("path")
-    .attr("d", d3.geoPath())
-    .attr("fill", function (d) {
-      return color(d.value);
-    });
-});
-
-// Engagement
-const svg_g = d3
-  .select("#engagement")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", `translate(${margin.left},${margin.top})`);
-
-svg_g
-  .append("text")
-  .attr("x", width / 2)
-  .attr("y", 2 - margin.top / 2)
-  .attr("text-anchor", "middle")
-  .style("font-size", "16px")
-  .style("text-decoration", "underline")
-  .text("Engagement");
-
-// read data
-d3.csv("./data/engagement_data.csv").then(function (data) {
-  // Add X axis
-  const x = d3
-    .scaleLinear()
-    .domain([0, 10])
-    .range([margin.left, width - margin.right]);
-  svg_g
-    .append("g")
-    .attr("transform", `translate(0, ${height})`)
-    .call(d3.axisBottom(x));
-  svg_g
-    .append("text")
-    .attr("class", "x label")
-    .attr("text-anchor", "end")
-    .attr("x", width)
-    .attr("y", height - 6)
-    .text("Importance");
-
-  // Add Y axis
-  const y = d3
-    .scaleLinear()
-    .domain([0, 10])
-    .range([height - margin.bottom, margin.top]);
-  svg_g.append("g").call(d3.axisLeft(y));
-  svg_g
-    .append("text")
-    .attr("class", "y label")
-    .attr("text-anchor", "end")
-    .attr("y", 6)
-    .attr("dy", ".75em")
-    .attr("transform", "rotate(-90)")
-    .text("Satisfaction");
-
-  // Prepare a color palette
-  const color = d3
-    .scaleLinear()
-    .domain([0, 0.001]) // Points per square pixel.
-    .range(["white", brandColorC]);
-
-  // compute the density data
-  const densityData = d3
-    .contourDensity()
-    .x(function (d) {
-      return x(d.x);
-    })
-    .y(function (d) {
-      return y(d.y);
-    })
-    .size([width, height])
-    .bandwidth(20)(data);
-
-  // show the shape
-  svg_g
-    .insert("g", "g")
-    .selectAll("path")
-    .data(densityData)
-    .enter()
-    .append("path")
-    .attr("d", d3.geoPath())
-    .attr("fill", function (d) {
-      return color(d.value);
-    });
-});
