@@ -79,6 +79,19 @@ createGraph(
   "./data/remote_work_efficiency_data.csv"
 );
 
+const svg_q = d3
+  .select("#high_quality_candidates")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_q,
+  "High quality candidates",
+  "./data/high_quality_candidate_data.csv"
+);
+
 function createGraph(svgName, title, dataFilePath) {
   svgName
     .append("text")
