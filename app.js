@@ -249,6 +249,28 @@ createGraph(
   "./data/20_identify_conflict_act_data.csv"
 );
 
+const svg_u = d3
+  .select("#capitalising_diversity")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_u,
+  "Capitalising on diversity when it comes to ideas",
+  "./data/21_capitalising_on_diversity.csv"
+);
+
+const svg_v = d3
+  .select("#reduce_bias")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(svg_v, "Reduce bias", "./data/22_reduce_bias_data.csv");
+
 // ============
 // Create graph function
 // ======================
