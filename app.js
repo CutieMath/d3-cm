@@ -17,6 +17,37 @@ const svg_i = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 createGraph(svg_i, "Leadership Capability", "./data/leadership_data.csv");
 
+const svg_j = d3
+  .select("#reduce_turnover")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(svg_j, "Reduce Turnover", "./data/reduce_turnover_data.csv");
+
+const svg_k = d3
+  .select("#see_barrier")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(svg_k, "See barrier", "./data/see_barriers_data.csv");
+
+const svg_l = d3
+  .select("#attractiveness")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_l,
+  "Attractive Place to work",
+  "./data/attractive_place_to_work_data.csv"
+);
+
 function createGraph(svgName, title, dataFilePath) {
   svgName
     .append("text")
