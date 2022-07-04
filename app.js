@@ -112,7 +112,7 @@ const svg_i = d3
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
-createGraph(svg_i, "Leadership Capability", "./data/leadership_data.csv");
+createGraph(svg_i, "Leadership Capability", "./data/9_leadership_data.csv");
 
 const svg_j = d3
   .select("#reduce_turnover")
