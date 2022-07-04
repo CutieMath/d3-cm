@@ -66,6 +66,19 @@ const svg_n = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 createGraph(svg_n, "Transparency", "./data/transparency_data.csv");
 
+const svg_o = d3
+  .select("#productivity")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_o,
+  "Productivity level",
+  "./data/level_of_productivity_data.csv"
+);
+
 function createGraph(svgName, title, dataFilePath) {
   svgName
     .append("text")
