@@ -101,7 +101,7 @@ const svg_h = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 createGraph(
   svg_h,
-  "Align teams to the purpost of company",
+  "Align teams to the purpose of company",
   "./data/8_purpose_alignment_data.csv"
 );
 
@@ -121,7 +121,7 @@ const svg_j = d3
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
-createGraph(svg_j, "Reduce Turnover", "./data/reduce_turnover_data.csv");
+createGraph(svg_j, "Reduce Turnover", "./data/10_reduce_turnover_data.csv");
 
 const svg_k = d3
   .select("#see_barrier")
@@ -130,7 +130,11 @@ const svg_k = d3
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
-createGraph(svg_k, "See barrier", "./data/see_barriers_data.csv");
+createGraph(
+  svg_k,
+  "See the biggest barrier to a great culture",
+  "./data/11_see_barriers_data.csv"
+);
 
 const svg_l = d3
   .select("#attractiveness")
@@ -141,8 +145,8 @@ const svg_l = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 createGraph(
   svg_l,
-  "Attractive Place to work",
-  "./data/attractive_place_to_work_data.csv"
+  "Become/Create attractive place to work",
+  "./data/12_attractive_place_to_work_data.csv"
 );
 
 const svg_m = d3
@@ -152,7 +156,7 @@ const svg_m = d3
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
-createGraph(svg_m, "Onboarding new staff", "./data/onborad_new_data.csv");
+createGraph(svg_m, "Onboarding new staff", "./data/13_onborad_new_data.csv");
 
 const svg_n = d3
   .select("#transparency")
@@ -161,10 +165,14 @@ const svg_n = d3
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
-createGraph(svg_n, "Transparency", "./data/transparency_data.csv");
+createGraph(
+  svg_n,
+  "Transparency across the entire organisation",
+  "./data/14_transparency_data.csv"
+);
 
 const svg_o = d3
-  .select("#remote_work_efficiency")
+  .select("#productivity")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -172,12 +180,12 @@ const svg_o = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 createGraph(
   svg_o,
-  "Remote Work Efficiency",
-  "./data/remote_work_efficiency_data.csv"
+  "Reach an ideal level of productivity right now",
+  "./data/15_level_of_productivity_data.csv"
 );
 
 const svg_p = d3
-  .select("#psychological_safety")
+  .select("#remote_work_efficiency")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -185,8 +193,8 @@ const svg_p = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 createGraph(
   svg_p,
-  "Psychological Safety",
-  "./data/psychological_safety_data.csv"
+  "Effective remote work",
+  "./data/16_remote_work_efficiency_data.csv"
 );
 
 const svg_q = d3
@@ -198,18 +206,35 @@ const svg_q = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 createGraph(
   svg_q,
-  "High quality candidates",
-  "./data/high_quality_candidate_data.csv"
+  "High quality candidate",
+  "./data/17_high_quality_candidate_data.csv"
 );
 
 const svg_r = d3
+  .select("#psychological_safety")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_r,
+  "Psychological Safety",
+  "./data/18_psychological_safety_data.csv"
+);
+
+const svg_s = d3
   .select("#manage_change")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
-createGraph(svg_r, "Manage change", "./data/manage_change_data.csv");
+createGraph(
+  svg_s,
+  "Manage change so the behaviours are long lasting",
+  "./data/19_manage_change_data.csv"
+);
 
 const svg_t = d3
   .select("#identify_conflict_act")
@@ -220,8 +245,8 @@ const svg_t = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 createGraph(
   svg_t,
-  "Identify Conflict Activity",
-  "./data/identify_conflict_act_data.csv"
+  "Identify activities that are in conflict with mission or values",
+  "./data/20_identify_conflict_act_data.csv"
 );
 
 // ============
