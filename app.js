@@ -92,6 +92,19 @@ createGraph(
   "./data/7_engagement_data.csv"
 );
 
+const svg_h = d3
+  .select("#purpose_align")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+createGraph(
+  svg_h,
+  "Align teams to the purpost of company",
+  "./data/8_purpose_alignment_data.csv"
+);
+
 const svg_i = d3
   .select("#leadership")
   .append("svg")
