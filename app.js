@@ -258,3 +258,86 @@ d3.csv("./data/store_culture_information_in_one_place.csv").then(function (
       return color(d.value);
     });
 });
+
+// Upskill
+const svg_d = d3
+  .select("#upskill")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+
+svg_d
+  .append("text")
+  .attr("x", width / 2)
+  .attr("y", 2 - margin.top / 2)
+  .attr("text-anchor", "middle")
+  .style("font-size", "16px")
+  .style("text-decoration", "underline")
+  .text("Upskill");
+
+// read data
+d3.csv("./data/upskill_data.csv").then(function (data) {
+  // Add X axis
+  const x = d3
+    .scaleLinear()
+    .domain([0, 10])
+    .range([margin.left, width - margin.right]);
+  svg_d
+    .append("g")
+    .attr("transform", `translate(0, ${height})`)
+    .call(d3.axisBottom(x));
+  svg_d
+    .append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", width)
+    .attr("y", height - 6)
+    .text("Importance");
+
+  // Add Y axis
+  const y = d3
+    .scaleLinear()
+    .domain([0, 10])
+    .range([height - margin.bottom, margin.top]);
+  svg_d.append("g").call(d3.axisLeft(y));
+  svg_d
+    .append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "end")
+    .attr("y", 6)
+    .attr("dy", ".75em")
+    .attr("transform", "rotate(-90)")
+    .text("Satisfaction");
+
+  // Prepare a color palette
+  const color = d3
+    .scaleLinear()
+    .domain([0, 0.001]) // Points per square pixel.
+    .range(["white", brandColorA]);
+
+  // compute the density data
+  const densityData = d3
+    .contourDensity()
+    .x(function (d) {
+      return x(d.x);
+    })
+    .y(function (d) {
+      return y(d.y);
+    })
+    .size([width, height])
+    .bandwidth(20)(data);
+
+  // show the shape
+  svg_d
+    .insert("g", "g")
+    .selectAll("path")
+    .data(densityData)
+    .enter()
+    .append("path")
+    .attr("d", d3.geoPath())
+    .attr("fill", function (d) {
+      return color(d.value);
+    });
+});
