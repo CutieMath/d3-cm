@@ -344,14 +344,24 @@ function createGraph(svgName, title, dataFilePath) {
     .style("font-size", "16px")
     .style("text-decoration", "underline")
     .text(title);
-
   // read data
   d3.csv(dataFilePath).then(function (data) {
+    const avg = (colValue) => {
+      let total = 0;
+      for (i = 0; i < data.length; i++) {
+        total += parseInt(data[i][colValue]);
+      }
+      return parseInt(total / data.length);
+    };
+    const xAvgValue = avg("x");
+    const yAvgValue = avg("y");
+
     // Add X axis
     const x = d3
       .scaleLinear()
       .domain([0, 10])
       .range([margin.left, width - margin.right]);
+
     svgName
       .append("g")
       .attr("transform", `translate(0, ${height})`)
@@ -369,6 +379,7 @@ function createGraph(svgName, title, dataFilePath) {
       .scaleLinear()
       .domain([0, 10])
       .range([height - margin.bottom, margin.top]);
+
     svgName.append("g").call(d3.axisLeft(y));
     svgName
       .append("text")
@@ -386,6 +397,16 @@ function createGraph(svgName, title, dataFilePath) {
       .scaleLinear()
       .domain([0, 0.001]) // Points per square pixel.
       .range(["white", brandColorFinal]);
+
+    // const averageData = d3.mean().x(function (d) {
+    //   return x(d.x);
+    // });
+    // console.log(averageData);
+
+    // d3.csv(dataFilePath).then((data) => {
+    //   console.log(data.length);
+    //   console.log(data.columns.length);
+    // });
 
     // compute the density data
     const densityData = d3
@@ -410,5 +431,15 @@ function createGraph(svgName, title, dataFilePath) {
       .attr("fill", function (d) {
         return color(d.value);
       });
+
+    svgName
+      .append("g")
+      .selectAll("dot")
+      .data(data)
+      .join("circle")
+      .attr("cx", x(xAvgValue))
+      .attr("cy", y(yAvgValue))
+      .attr("r", 5)
+      .attr("fill", "#141414");
   });
 }
