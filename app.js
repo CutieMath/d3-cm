@@ -335,8 +335,8 @@ createGraph(
 // ==========
 // Create graph function
 // ======================
-function createGraph(svgName, title, dataFilePath) {
-  svgName
+function createGraph(svgObj, title, dataFilePath) {
+  svgObj
     .append("text")
     .attr("x", width / 2)
     .attr("y", 2 - margin.top / 2)
@@ -351,7 +351,7 @@ function createGraph(svgName, title, dataFilePath) {
       for (i = 0; i < data.length; i++) {
         total += parseInt(data[i][colValue]);
       }
-      return parseInt(total / data.length);
+      return total / data.length;
     };
     const xAvgValue = avg("x");
     const yAvgValue = avg("y");
@@ -362,11 +362,11 @@ function createGraph(svgName, title, dataFilePath) {
       .domain([0, 10])
       .range([margin.left, width - margin.right]);
 
-    svgName
+    svgObj
       .append("g")
       .attr("transform", `translate(0, ${height})`)
       .call(d3.axisBottom(x));
-    svgName
+    svgObj
       .append("text")
       .attr("class", "x label")
       .attr("text-anchor", "end")
@@ -380,8 +380,8 @@ function createGraph(svgName, title, dataFilePath) {
       .domain([0, 10])
       .range([height - margin.bottom, margin.top]);
 
-    svgName.append("g").call(d3.axisLeft(y));
-    svgName
+    svgObj.append("g").call(d3.axisLeft(y));
+    svgObj
       .append("text")
       .attr("class", "y label")
       .attr("text-anchor", "end")
@@ -421,7 +421,7 @@ function createGraph(svgName, title, dataFilePath) {
       .bandwidth(20)(data);
 
     // show the shape
-    svgName
+    svgObj
       .insert("g", "g")
       .selectAll("path")
       .data(densityData)
@@ -432,7 +432,7 @@ function createGraph(svgName, title, dataFilePath) {
         return color(d.value);
       });
 
-    svgName
+    svgObj
       .append("g")
       .selectAll("dot")
       .data(data)
